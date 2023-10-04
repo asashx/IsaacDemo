@@ -69,6 +69,20 @@ public class Tears : MonoBehaviour
                 rb.AddForce((other.transform.position - transform.position) * 400f);
             }
         }
+        else if (other.CompareTag("Enemy"))
+        {
+            Die();
+            EnemyBehaviour enemyBehaviour = other.GetComponent<EnemyBehaviour>();
+            if (enemyBehaviour != null)
+            {
+                enemyBehaviour.TakeDamage(damage);
+            }
+            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.AddForce((other.transform.position - transform.position) * 1000f);
+            }
+        }
     }
 
     // 眼泪销毁

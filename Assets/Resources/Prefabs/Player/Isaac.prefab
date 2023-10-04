@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3186358306486586235}
   - component: {fileID: 5135116015164513981}
   - component: {fileID: 1021217651322011258}
+  - component: {fileID: 5819699035186875336}
   m_Layer: 3
   m_Name: Isaac
   m_TagString: Player
@@ -33,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 1895074375601839836}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -1.6, z: 0.09221958}
+  m_LocalPosition: {x: 0.5, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -145,7 +146,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: 0, y: -0.7}
   serializedVersion: 2
   m_Radius: 0.2
 --- !u!95 &5156778120346382110
@@ -190,7 +191,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895074375601839836}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -221,11 +222,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -993290133
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -595358161, guid: a9bce37b7ad141043bfafae28f907288, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -851179552, guid: 541d65e9030c5c34abbb3ce54a1091a6, type: 3}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -248,6 +249,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 2114500051443993343, guid: 9de9ed7ea38320849ad2ad44f0e39a55, type: 3}
+--- !u!114 &5819699035186875336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895074375601839836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3628a6d94d77ef4b9208b21a690b17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  health: 6
 --- !u!1 &2193241036784588132
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +290,7 @@ Transform:
   m_GameObject: {fileID: 2193241036784588132}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.100000024, z: -0.09221958}
+  m_LocalPosition: {x: 0, y: -0.7, z: -0.09221958}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -382,7 +397,7 @@ Transform:
   m_GameObject: {fileID: 5204192348888072587}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39999998, z: -0.09221958}
+  m_LocalPosition: {x: 0, y: -0.2, z: -0.09221958}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

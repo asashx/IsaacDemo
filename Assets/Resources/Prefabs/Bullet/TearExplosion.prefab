@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8707353538802719540}
   - component: {fileID: 4411935025120802586}
   - component: {fileID: 7325403878513044926}
-  - component: {fileID: 3785620739783869556}
+  - component: {fileID: 522496070607274852}
   m_Layer: 7
   m_Name: TearExplosion
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3785620739783869556
+--- !u!114 &522496070607274852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,6 +116,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5341331013394537823}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c112999b66a358140aba9a598d4c1c2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ef47b70ac16d2549aeed8f437570c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
