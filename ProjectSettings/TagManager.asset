@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - Bomb
   - Enemy
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - UI
   - Wall
   - Bullet
-  - 
-  - 
+  - Item
+  - Enemy
   - 
   - 
   - 

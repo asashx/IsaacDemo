@@ -21,7 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
     private float attackTimer = 0f;      // 攻击计时器
 
     // 在 Start 方法中初始化当前生命值和其他组件
-    void Start()
+    protected virtual void Start()
     {
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();

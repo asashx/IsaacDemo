@@ -12,6 +12,7 @@ public class PlayerLife : MonoBehaviour
     private GameObject emptyHeart1, emptyHeart2, emptyHeart3;
 
     public int health;
+    public int maxHealth = 6;
     private float invincibleTime = 1f;
     private bool isInvincible = false;
     private Transform head;
@@ -37,13 +38,23 @@ public class PlayerLife : MonoBehaviour
         emptyHeart2 = canvas.transform.Find("EmptyHeart2").gameObject;
         emptyHeart3 = canvas.transform.Find("EmptyHeart3").gameObject;
 
-        health = 6;
+        health = maxHealth;
         LifeCount();
     }
 
     void Update()
     {
 
+    }
+
+    public void GetHeal(int heal)
+    {
+        health += heal;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        LifeCount();
     }
 
     public void TakeDamage(int damage)
