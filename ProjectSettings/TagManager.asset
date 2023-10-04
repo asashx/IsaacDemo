@@ -7,6 +7,8 @@ TagManager:
   - Wall
   - Obstacle
   - Bomb
+  - Enemy
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - UI
   - Wall
   - Bullet
-  - 
-  - 
+  - Item
+  - Enemy
   - 
   - 
   - 
@@ -41,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3406869935
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
