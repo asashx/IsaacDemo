@@ -58,6 +58,11 @@ public class Tears : MonoBehaviour
         }
         else if (other.CompareTag("Obstacle"))
         {
+            Obstacle obstacle = other.GetComponent<Obstacle>();
+            if (obstacle.isAttackable)
+            {
+                obstacle.TakeDamage(1);
+            }
             Die();
         }
         else if (other.CompareTag("Bomb"))
