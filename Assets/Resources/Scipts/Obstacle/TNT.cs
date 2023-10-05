@@ -2,44 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class TNT : Obstacle
 {
     public GameObject explosionPrefab;
-    private Animator animator;
-    private AnimatorStateInfo info;
     public float explosionRadius = 1f;
     public float explosionForce = 15f;
-    public int explosionDamage = 2;
-
-    // private Collider collider;
-    // private GameObject player;
-    // private float activateDistance = 0.5f;
-
-    void Start()
+    protected override void Start()
     {
-        animator = GetComponent<Animator>();
-        // collider = GetComponent<Collider>();
-
-        // player = GameObject.FindGameObjectWithTag("Player");
+        isAttackable = true;
     }
 
-    // 爆炸动画播放完毕后回收
-    void Update()
+    protected override void Die()
     {
-        // if(player != null)
-        // {
-        //     Vector2 playerPosition = player.transform.position;
-        //     Vector2 bombPosition = transform.position;
-        //     if(Vector2.Distance(playerPosition, bombPosition) >= activateDistance)
-        //     {
-        //         collider.enabled = true;
-        //     }
-        // }
-        info = animator.GetCurrentAnimatorStateInfo(0);
-        if(info.normalizedTime >= 1.0f)
-        {
-            Explode();
-        }
+        Destroy(gameObject);
+        Explode();
     }
 
     void Explode()
@@ -61,7 +37,7 @@ public class Bomb : MonoBehaviour
                     PlayerLife playerLife = collider.GetComponent<PlayerLife>();
                     if (playerLife != null)
                     {
-                        playerLife.TakeDamage(explosionDamage);
+                        playerLife.TakeDamage(2);
                     }
                 }
                 else if (collider.CompareTag("Enemy"))
@@ -70,7 +46,7 @@ public class Bomb : MonoBehaviour
                     EnemyBehaviour enemyBehaviour = collider.GetComponent<EnemyBehaviour>();
                     if (enemyBehaviour != null)
                     {
-                        enemyBehaviour.TakeDamage(explosionDamage);
+                        enemyBehaviour.TakeDamage(2);
                     }
                 }
                 else if (collider.CompareTag("Item") || collider.CompareTag("Bomb"))
@@ -87,9 +63,6 @@ public class Bomb : MonoBehaviour
                 }
             }
         }
-
-        ObjectPool.Instance.PushObject(gameObject);
-        
         GameObject exp = ObjectPool.Instance.GetObject(explosionPrefab);
         exp.transform.position = transform.position;
     }
