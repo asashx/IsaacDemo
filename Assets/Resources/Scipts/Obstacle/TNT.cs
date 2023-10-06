@@ -9,6 +9,7 @@ public class TNT : Obstacle
     public float explosionForce = 15f;
     protected override void Start()
     {
+        base.Start();
         isAttackable = true;
     }
 

@@ -10,6 +10,8 @@ public class PlayerLife : MonoBehaviour
     private GameObject heart1, heart2, heart3;
     private GameObject halfHeart1, halfHeart2, halfHeart3;
     private GameObject emptyHeart1, emptyHeart2, emptyHeart3;
+    private GameObject gameover;
+    private GameObject gameoverPanel;
 
     public int health;
     public int maxHealth = 6;
@@ -37,6 +39,11 @@ public class PlayerLife : MonoBehaviour
         emptyHeart1 = canvas.transform.Find("EmptyHeart1").gameObject;
         emptyHeart2 = canvas.transform.Find("EmptyHeart2").gameObject;
         emptyHeart3 = canvas.transform.Find("EmptyHeart3").gameObject;
+
+        // 在 Canvas 下寻找子物体 Gameover
+        gameover = canvas.transform.Find("GameOver").gameObject;
+        gameoverPanel = gameover.transform.Find("Gameover").gameObject;
+
 
         health = maxHealth;
         LifeCount();
@@ -89,7 +96,8 @@ public class PlayerLife : MonoBehaviour
 
     void Gameover()
     {
-
+        gameoverPanel.SetActive(true);
+        Time.timeScale = 0;
     }
 
     void LifeCount()

@@ -50,6 +50,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: AboveGround
+    uniqueID: 3652398213
+    locked: 0
   - name: Player
     uniqueID: 3301677163
     locked: 0

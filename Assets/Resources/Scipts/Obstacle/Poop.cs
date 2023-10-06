@@ -6,6 +6,7 @@ public class Poop : Obstacle
 {
     protected override void Start()
     {
+        base.Start();
         isAttackable = true;
     }
 
