@@ -14,6 +14,10 @@ public class StartGame : MonoBehaviour
             // 延时两秒
             Invoke("LoadScene", 2f);
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     void LoadScene()

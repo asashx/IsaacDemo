@@ -17,13 +17,14 @@ public class RoomGenerator : MonoBehaviour
 
     [Header("房间信息")]
     public GameObject roomPrefab;       // 房间预制体
-    public int roomNumber = 8;          // 房间数量
-    public Color startColor, bossColor, itemColor;  // 起始颜色和结束颜色, 道具房。
+    public GameObject bossroomPrefab;   // Boss房间预制体
+    public GameObject itemroomPrefab;   // 物品房间预制体
+    public int roomNumber = 6;          // 房间数量
 
     [Header("位置控制")]
     public Transform generatorPoint;    // 生成房间的位置
-    public float xOffset = 20f;         // 房间之间的水平间距
-    public float yOffset = 12f;         // 房间之间的垂直间距
+    public float xOffset = 18.5f;         // 房间之间的水平间距
+    public float yOffset = 11f;         // 房间之间的垂直间距
     public LayerMask roomLayer;         // 房间的层级
 
     public List<Room> rooms = new List<Room>(); // 生成的房间列表
@@ -54,7 +55,6 @@ public class RoomGenerator : MonoBehaviour
             ChangePointPos();
         }
 
-        rooms[0].GetComponent<SpriteRenderer>().color = startColor;
         rooms[0].isStart = true;
 
         Room farRoom = rooms[rooms.Count - 1];
@@ -91,12 +91,11 @@ public class RoomGenerator : MonoBehaviour
             int randomIndex = Random.Range(0, onewayRooms.Count);
             selectedRoom = onewayRooms[randomIndex];
             Vector3 bossRoomPosition = GetAdjacentPosition(selectedRoom.transform.position);
-            GameObject bossRoomObject = Instantiate(roomPrefab, bossRoomPosition, Quaternion.identity);
+            GameObject bossRoomObject = Instantiate(bossroomPrefab, bossRoomPosition, Quaternion.identity);
             selectedRoom.isWaytoBoss = true;
             Room bossRoom = bossRoomObject.GetComponent<Room>();
             bossRoom.isBoss = true;
             bossRoom.isNormal = false;
-            bossRoom.GetComponent<SpriteRenderer>().color = bossColor;
             SetRoomDoor(bossRoom, bossRoomPosition);
             SetRoomDoor(selectedRoom, selectedRoom.transform.position);
             onewayRooms.RemoveAt(randomIndex);
@@ -104,12 +103,11 @@ public class RoomGenerator : MonoBehaviour
         else
         {
             Vector3 bossRoomPosition = GetAdjacentPosition(farRoom.transform.position);
-            GameObject bossRoomObject = Instantiate(roomPrefab, bossRoomPosition, Quaternion.identity);
+            GameObject bossRoomObject = Instantiate(bossroomPrefab, bossRoomPosition, Quaternion.identity);
             farRoom.isWaytoBoss = true;
             Room bossRoom = bossRoomObject.GetComponent<Room>();
             bossRoom.isBoss = true;
             bossRoom.isNormal = false;
-            bossRoom.GetComponent<SpriteRenderer>().color = bossColor;
             SetRoomDoor(bossRoom, bossRoomPosition);
             SetRoomDoor(farRoom, farRoom.transform.position);
         }
@@ -118,12 +116,11 @@ public class RoomGenerator : MonoBehaviour
             int randomIndex = Random.Range(0, onewayRooms.Count);
             selectedRoom = onewayRooms[randomIndex];
             Vector3 itemRoomPosition = GetAdjacentPosition(selectedRoom.transform.position);
-            GameObject itemRoomObject = Instantiate(roomPrefab, itemRoomPosition, Quaternion.identity);
+            GameObject itemRoomObject = Instantiate(itemroomPrefab, itemRoomPosition, Quaternion.identity);
             selectedRoom.isWaytoItem = true;
             Room itemRoom = itemRoomObject.GetComponent<Room>();
             itemRoom.isItem = true;
             itemRoom.isNormal = false;
-            itemRoom.GetComponent<SpriteRenderer>().color = itemColor;
             SetRoomDoor(itemRoom, itemRoomPosition);
             SetRoomDoor(selectedRoom, selectedRoom.transform.position);
             onewayRooms.RemoveAt(randomIndex);
@@ -137,12 +134,11 @@ public class RoomGenerator : MonoBehaviour
             } while (CountDoorNumber(selectedRoom) > 2 || selectedRoom.isWaytoBoss);
 
             Vector3 itemRoomPosition = GetAdjacentPosition(selectedRoom.transform.position);
-            GameObject itemRoomObject = Instantiate(roomPrefab, itemRoomPosition, Quaternion.identity);
+            GameObject itemRoomObject = Instantiate(itemroomPrefab, itemRoomPosition, Quaternion.identity);
             selectedRoom.isWaytoItem = true;
             Room itemRoom = itemRoomObject.GetComponent<Room>();
             itemRoom.isItem = true;
             itemRoom.isNormal = false;
-            itemRoom.GetComponent<SpriteRenderer>().color = itemColor;
             SetRoomDoor(itemRoom, itemRoomPosition);
             SetRoomDoor(selectedRoom, selectedRoom.transform.position);
         }
