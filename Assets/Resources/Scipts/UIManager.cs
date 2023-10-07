@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public GameObject coinText;
@@ -22,6 +23,42 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject); // 如果已经存在其他实例，则销毁当前实例
         }
+    }
+
+    void Start()
+    {
+        // string sceneName = SceneManager.GetActiveScene().name;
+
+        // if (sceneName == "StartScene")
+        // {
+        //     if (life != null)
+        //     {
+        //         life.SetActive(false);
+        //     }
+        //     if (item != null)
+        //     {
+        //         item.SetActive(false);
+        //     }
+        //     if (property != null)
+        //     {
+        //         property.SetActive(false);
+        //     }
+        // }
+        // else if (sceneName == "GameScene")
+        // {
+        //     if (life != null)
+        //     {
+        //         life.SetActive(true);
+        //     }
+        //     if (item != null)
+        //     {
+        //         item.SetActive(true);
+        //     }
+        //     if (property != null)
+        //     {
+        //         property.SetActive(true);
+        //     }
+        // }
     }
 
     public void UpdateCoinText(int coin)

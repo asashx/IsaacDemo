@@ -12,6 +12,16 @@ public class PlayerProperty : MonoBehaviour
     // private float attack = 3.5f;
     // private float attackSpeed = 2.73f;
     // private float attackRange = 6.5f;
+    void Start()
+    {
+        coinNum = 0;
+        bombNum = 1;
+        keyNum = 0;
+        
+        UIManager.Instance.UpdateCoinText(coinNum);
+        UIManager.Instance.UpdateBombText(bombNum);
+        UIManager.Instance.UpdateKeyText(keyNum);
+    }
 
     public void AddCoin(int num)
     {
