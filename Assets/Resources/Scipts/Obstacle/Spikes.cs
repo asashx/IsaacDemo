@@ -13,7 +13,7 @@ public class Spikes : Obstacle
         if (other.CompareTag("Player"))
         {
             // 伤害玩家
-            other.GetComponent<PlayerLife>().TakeDamage(1);
+            other.GetComponent<PlayerLife>().TakeDamage(2);
         }
     }
 }

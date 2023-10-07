@@ -77,13 +77,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  roomPrefab: {fileID: 777152489324125804, guid: ac31215fe8764df45a67e74cb90e7dd4, type: 3}
+  startroomPrefab: {fileID: 777152489324125804, guid: ac31215fe8764df45a67e74cb90e7dd4, type: 3}
   bossroomPrefab: {fileID: 8874140191867439237, guid: 49c76674b0997ae40aa18391471451cb, type: 3}
   itemroomPrefab: {fileID: 3252387294230355298, guid: b92278cd16d005b4599326ff918741a8, type: 3}
+  normalroomPrefab:
+  - {fileID: 4886772107704343154, guid: 892a3382f08d2b64f8ed440cd8919aa1, type: 3}
+  - {fileID: 5736078010932476397, guid: d968247095fa813489c247299d4c85ab, type: 3}
+  - {fileID: 2513174150055578410, guid: b2420a9c8eaeb7743a562cd566223954, type: 3}
+  - {fileID: 3832985394946609365, guid: e1f908d23ba684e40ac387e721937877, type: 3}
+  - {fileID: 5636327407487559853, guid: dd8f853a5a11f674bb6ae298dee9a031, type: 3}
   roomNumber: 6
-  startColor: {r: 0, g: 0.561451, b: 0.990566, a: 1}
-  bossColor: {r: 1, g: 0, b: 0, a: 1}
-  itemColor: {r: 0.96474147, g: 1, b: 0, a: 1}
   generatorPoint: {fileID: 2478180097815582229}
   xOffset: 18.5
   yOffset: 11

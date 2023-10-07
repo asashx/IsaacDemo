@@ -54,4 +54,26 @@ public class ObjectPool
         prefab.SetActive(false);
     }
 
+    public void Clear()
+    {
+        // 遍历对象池中的所有队列，销毁队列中的对象
+        foreach (var queue in objectPool.Values)
+        {
+            foreach (var obj in queue)
+            {
+                GameObject.Destroy(obj);
+            }
+        }
+
+        // 清空对象池字典
+        objectPool.Clear();
+
+        // 销毁对象池的父对象
+        if (pool != null)
+        {
+            GameObject.Destroy(pool);
+            pool = null;
+        }
+    }
+
 }

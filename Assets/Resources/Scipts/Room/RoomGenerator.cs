@@ -16,9 +16,10 @@ public class RoomGenerator : MonoBehaviour
     public Direction direction;         // 房间的方向
 
     [Header("房间信息")]
-    public GameObject roomPrefab;       // 房间预制体
+    public GameObject startroomPrefab;       // 房间预制体
     public GameObject bossroomPrefab;   // Boss房间预制体
     public GameObject itemroomPrefab;   // 物品房间预制体
+    public GameObject[] normalroomPrefab;   // 普通房间预制体
     public int roomNumber = 6;          // 房间数量
 
     [Header("位置控制")]
@@ -48,14 +49,25 @@ public class RoomGenerator : MonoBehaviour
 
     void GenerateRooms()
     {
+
+
         for (int i = 0; i < roomNumber; i++)
         {
-            rooms.Add(Instantiate(roomPrefab, generatorPoint.position, Quaternion.identity).GetComponent<Room>());
+            if (i == 0)
+            {
+                rooms.Add(Instantiate(startroomPrefab, generatorPoint.position, Quaternion.identity).GetComponent<Room>());
+                rooms[0].isStart = true;
+                ChangePointPos();
+            }
+            else
+            {
+                int randomIndex = Random.Range(0, normalroomPrefab.Length);
+                GameObject selectedroomPrefab = normalroomPrefab[randomIndex];
+                rooms.Add(Instantiate(selectedroomPrefab, generatorPoint.position, Quaternion.identity).GetComponent<Room>());
 
-            ChangePointPos();
+                ChangePointPos();
+            }
         }
-
-        rooms[0].isStart = true;
 
         Room farRoom = rooms[rooms.Count - 1];
 

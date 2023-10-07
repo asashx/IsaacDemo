@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    public Canvas canvas;
-
+    public GameObject manage;
     private GameObject heart1, heart2, heart3;
     private GameObject halfHeart1, halfHeart2, halfHeart3;
     private GameObject emptyHeart1, emptyHeart2, emptyHeart3;
-    private GameObject gameover;
-    private GameObject gameoverPanel;
+    private GameObject life;
+    private Canvas canvas;
 
     public int health;
     public int maxHealth = 6;
@@ -19,31 +18,32 @@ public class PlayerLife : MonoBehaviour
     private bool isInvincible = false;
     private Transform head;
     private Transform body;
+    private GameManage gameManage;
 
     void Start()
     {
+        gameManage = manage.GetComponent<GameManage>();
+
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        life = canvas.transform.Find("Life").gameObject;
+
         head = transform.Find("Head");
         body = transform.Find("Body");
-        
-        // 在 Canvas 下寻找子物体 Heart1、Heart2、Heart3
-        heart1 = canvas.transform.Find("Heart1").gameObject;
-        heart2 = canvas.transform.Find("Heart2").gameObject;
-        heart3 = canvas.transform.Find("Heart3").gameObject;
 
-        // 在 Canvas 下寻找子物体 halfHeart1、halfHeart2、halfHeart3
-        halfHeart1 = canvas.transform.Find("HalfHeart1").gameObject;
-        halfHeart2 = canvas.transform.Find("HalfHeart2").gameObject;
-        halfHeart3 = canvas.transform.Find("HalfHeart3").gameObject;
+        // 在 life 下寻找子物体 Heart1、Heart2、Heart3
+        heart1 = life.transform.Find("Heart1").gameObject;
+        heart2 = life.transform.Find("Heart2").gameObject;
+        heart3 = life.transform.Find("Heart3").gameObject;
 
-        // 在 Canvas 下寻找子物体 emptyHeart1、emptyHeart2、emptyHeart3
-        emptyHeart1 = canvas.transform.Find("EmptyHeart1").gameObject;
-        emptyHeart2 = canvas.transform.Find("EmptyHeart2").gameObject;
-        emptyHeart3 = canvas.transform.Find("EmptyHeart3").gameObject;
+        // 在 life 下寻找子物体 halfHeart1、halfHeart2、halfHeart3
+        halfHeart1 = life.transform.Find("HalfHeart1").gameObject;
+        halfHeart2 = life.transform.Find("HalfHeart2").gameObject;
+        halfHeart3 = life.transform.Find("HalfHeart3").gameObject;
 
-        // 在 Canvas 下寻找子物体 Gameover
-        gameover = canvas.transform.Find("GameOver").gameObject;
-        gameoverPanel = gameover.transform.Find("Gameover").gameObject;
-
+        // 在 life 下寻找子物体 emptyHeart1、emptyHeart2、emptyHeart3
+        emptyHeart1 = life.transform.Find("EmptyHeart1").gameObject;
+        emptyHeart2 = life.transform.Find("EmptyHeart2").gameObject;
+        emptyHeart3 = life.transform.Find("EmptyHeart3").gameObject;
 
         health = maxHealth;
         LifeCount();
@@ -66,27 +66,34 @@ public class PlayerLife : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isInvincible)
+        if (gameManage.isGameOver)
         {
             return;
         }
-        else if (!isInvincible)
+        else
         {
-            health -= damage;
-            isInvincible = true;
-            
-            LifeCount();
-            
-            // 获取头部和身体的Animator组件
-            Animator headAnimator = head.GetComponent<Animator>();
-            Animator bodyAnimator = body.GetComponent<Animator>();
+            if (isInvincible)
+            {
+                return;
+            }
+            else if (!isInvincible)
+            {
+                health -= damage;
+                isInvincible = true;
 
-            // 触发头部和身体的"IsHurt"触发器
-            headAnimator.SetTrigger("isHurt");
-            bodyAnimator.SetTrigger("isHurt");
+                LifeCount();
 
-            Invoke("ResetInvincible", invincibleTime);
-        }  
+                // 获取头部和身体的Animator组件
+                Animator headAnimator = head.GetComponent<Animator>();
+                Animator bodyAnimator = body.GetComponent<Animator>();
+
+                // 触发头部和身体的"IsHurt"触发器
+                headAnimator.SetTrigger("isHurt");
+                bodyAnimator.SetTrigger("isHurt");
+
+                Invoke("ResetInvincible", invincibleTime);
+            }
+        }
     }
 
     void ResetInvincible()
@@ -96,8 +103,7 @@ public class PlayerLife : MonoBehaviour
 
     void Gameover()
     {
-        gameoverPanel.SetActive(true);
-        Time.timeScale = 0;
+        gameManage.GameOver();
     }
 
     void LifeCount()
@@ -186,5 +192,5 @@ public class PlayerLife : MonoBehaviour
                 emptyHeart3.SetActive(true);
                 break;
         }
-    }  
+    }
 }
