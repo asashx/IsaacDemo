@@ -6,6 +6,25 @@ public class Spider : EnemyBehaviour
 {
     private bool arrived = true;        // 是否到达目标位置
 
+    private Vector3 randomOffset;     // 目标位置
+
+    protected override void Start()
+    {
+        base.Start();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        
+        InvokeRepeating("RandomTarget", 0f, moveInterval);
+    }
+
+    private void RandomTarget()
+    {
+        Vector3 randomOffset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
+    }
+
     protected override void PerformMovement()
     {
         animator.SetBool("move", true);
@@ -28,8 +47,6 @@ public class Spider : EnemyBehaviour
         else if (distance >= detectRange && arrived == true)
         {
             arrived = false;
-
-            Vector3 randomOffset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
 
             Vector3 moveVector = (randomOffset - transform.position).normalized;
 

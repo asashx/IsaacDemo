@@ -8,12 +8,13 @@ public class StartGame : MonoBehaviour
     private GameObject life; // 引用Life 对象
     private GameObject item; // 引用Item 对象
     private GameObject property; // 引用Property 对象
-
+    GameObject Loading;
     void Start()
     {
         life = GameObject.Find("Life");
         item = GameObject.Find("Item");
         property = GameObject.Find("Property");
+        Loading = GameObject.Find("LoadManager");
         if (life != null)
         {
             life.SetActive(false);
@@ -26,6 +27,7 @@ public class StartGame : MonoBehaviour
         {
             property.SetActive(false);
         }
+        Loading.transform.position = new Vector3(0f, 0f, 0f);
     }
     void Update()
     {

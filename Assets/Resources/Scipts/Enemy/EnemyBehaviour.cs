@@ -9,7 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     public float maxHealth = 10f;        // 最大生命值
     protected float currentHealth;         // 当前生命值
     public float moveSpeed = 2f;         // 移动速度
-    public float detectRange = 3f;       // 检测范围
+    public float detectRange = 4f;       // 检测范围
     public GameObject diePrefab;          // 死亡时的粒子效果
 
     protected Animator animator;
@@ -30,7 +30,7 @@ public class EnemyBehaviour : MonoBehaviour
     }
 
     // 在 Update 方法中处理周期性的移动和攻击
-    void Update()
+    protected virtual void Update()
     {
         // 更新移动计时器
         moveTimer += Time.deltaTime;
@@ -65,6 +65,20 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Enemy"))
+        {
+            // 获取敌人的 EnemyBehaviour 组件
+            EnemyBehaviour enemy = other.GetComponent<EnemyBehaviour>();
+
+            if (enemy != null)
+            {
+                // 计算敌人的反弹方向
+                Vector2 bounceDirection = (other.transform.position - transform.position).normalized;
+
+                // 反弹敌人
+                enemy.rb.velocity = bounceDirection * 8f;
+            }
+        }
         if (other.CompareTag("Player"))
         {
             // 获取玩家的 PlayerLife 组件
