@@ -14,12 +14,18 @@ public class Clotty : EnemyBehaviour
 
         eyesPos = transform.Find("Eyes");
     }
-    protected override void PerformMovement()
+
+    protected override void Update()
+    {
+        base.Update();
+
+        InvokeRepeating("MoveToRandomTarget", 0f, moveInterval);
+    }
+
+    private void MoveToRandomTarget()
     {
         Vector3 randomOffset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f);
-
         Vector3 moveVector = (randomOffset - transform.position).normalized;
-
         StartCoroutine(MoveToTarget(randomOffset, moveVector));
     }
 
